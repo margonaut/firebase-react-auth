@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
 import EducationFields from './EducationFields'
 
 class SurveyForm extends Component {
@@ -11,6 +12,10 @@ class SurveyForm extends Component {
     this.handleUnfocus = this.handleUnfocus.bind(this);
   }
 
+  componentWillMount() {
+    this.firebaseRef = firebase.database().ref().child('submissions');
+  }
+
   handleUnfocus(event) {
     event.preventDefault();
     let updatedData = {};
@@ -19,7 +24,16 @@ class SurveyForm extends Component {
     updatedData[inputId] = inputValue;
     this.setState(updatedData, function() {
       console.log(this.state);
+      this.updateFirebase();
     });
+  }
+
+  updateFirebase() {
+    if (this.submissionRef) {
+      this.submissionRef.set(this.state);
+    } else {
+      this.submissionRef = this.firebaseRef.push(this.state);
+    }
   }
 
   currentStep() {
