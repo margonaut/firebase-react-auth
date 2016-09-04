@@ -10,11 +10,31 @@ class SurveyForm extends Component {
     }
 
     this.handleUnfocus = this.handleUnfocus.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.getDataFromFirebase = this.getDataFromFirebase.bind(this);
   }
 
   componentWillMount() {
+    this.getDataFromFirebase();
+  }
+
+  getDataFromFirebase() {
     this.firebaseRef = firebase.database().ref().child('submissions');
     this.submissionRef = this.firebaseRef.child(this.state.user_id);
+
+    this.submissionRef.once('value').then(function(snapshot) {
+      console.log(snapshot.val());
+    }, function(error) {
+      console.error(error);
+    });
+    // this.submissionRef.on("value", function(snapshot) {
+    //   let data = snapshot.val();
+    //   // this.setState(data);
+    //   console.log(snapshot.val());
+    // }, function (errorObject) {
+    //   console.log("The read failed: " + errorObject.code);
+    // });
+
   }
 
   handleUnfocus(event) {
@@ -29,6 +49,15 @@ class SurveyForm extends Component {
     });
   }
 
+  handleChange(event) {
+    let updatedData = {};
+    let inputValue = event.target.value;
+    let inputId = event.target.id;
+    updatedData[inputId] = inputValue;
+    this.setState(updatedData);
+    console.log("changing")
+  }
+
   updateFirebase() {
     this.submissionRef.update(this.state);
   }
@@ -36,7 +65,10 @@ class SurveyForm extends Component {
   currentStep() {
     switch (this.props.step) {
       case 1:
-        return <EducationFields handleUnfocus={this.handleUnfocus} />
+        return <EducationFields
+                  handleUnfocus={this.handleUnfocus}
+                  userData={this.submissionRef}
+                  handleChange={this.handleChange} />
       case 2:
         return "Render Component for Step Two Fields"
       case 3:
