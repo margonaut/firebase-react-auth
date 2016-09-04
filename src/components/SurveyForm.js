@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import EducationFields from './EducationFields'
 
 class SurveyForm extends Component {
 
   currentStep() {
     switch (this.props.step) {
       case 1:
-        return "Step one fields"
+        return <EducationFields />
       case 2:
         return "Render Component for Step Two Fields"
       case 3:
