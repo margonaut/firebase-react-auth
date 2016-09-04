@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     var content;
 
-    if (this.currentUser) {
+    if (this.state.currentUser) {
       content = <p>Logged in!</p>
     } else {
       content = <SignUpForm auth={this.auth} />

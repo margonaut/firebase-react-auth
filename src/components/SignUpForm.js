@@ -12,11 +12,8 @@ class SignUpForm extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
-  //
-  // componentWillMount() {
-  //   this.auth = firebase.auth()
-  // }
 
   handleLogin(event) {
     event.preventDefault();
@@ -27,6 +24,14 @@ class SignUpForm extends Component {
 
   }
 
+  handleSignUp(event) {
+    event.preventDefault();
+    let email = this.state.email;
+    let password = this.state.password;
+    const signUpPromise = this.props.auth.createUserWithEmailAndPassword(email, password);
+    signUpPromise.catch(e => console.log(e.message));
+  }
+
   handleEmailChange(event) {
     this.setState({ email: event.target.value });
   }
@@ -35,13 +40,12 @@ class SignUpForm extends Component {
     this.setState({ password: event.target.value });
   }
 
-
   render() {
     return (
       <form>
         <input id="email" onChange={this.handleEmailChange} type="email" placeholder="email" />
         <input id="password" onChange={this.handlePasswordChange} type="password" placeholder="password" />
-        <button id="signUpButton"></button>
+        <button onClick={this.handleSignUp} id="signUpButton">Sign Up</button>
         <button onClick={this.handleLogin} id="loginButton">Login</button>
       </form>
     )
