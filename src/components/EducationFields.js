@@ -11,7 +11,6 @@ const EducationFields = (props) => {
       <button >Next</button>
       </div>
     </div>
-
   )
 }
 

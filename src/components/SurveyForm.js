@@ -23,18 +23,11 @@ class SurveyForm extends Component {
     this.submissionRef = this.firebaseRef.child(this.state.user_id);
 
     this.submissionRef.once('value').then(function(snapshot) {
+      // can't access this.setState here
       console.log(snapshot.val());
     }, function(error) {
       console.error(error);
     });
-    // this.submissionRef.on("value", function(snapshot) {
-    //   let data = snapshot.val();
-    //   // this.setState(data);
-    //   console.log(snapshot.val());
-    // }, function (errorObject) {
-    //   console.log("The read failed: " + errorObject.code);
-    // });
-
   }
 
   handleUnfocus(event) {

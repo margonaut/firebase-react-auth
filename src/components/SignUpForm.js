@@ -20,7 +20,6 @@ class SignUpForm extends Component {
     let password = this.state.password;
     const loginPromise = this.props.auth.signInWithEmailAndPassword(email, password);
     loginPromise.catch(e => console.log(e.message));
-
   }
 
   handleSignUp(event) {
