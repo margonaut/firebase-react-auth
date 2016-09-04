@@ -14,6 +14,7 @@ class SurveyForm extends Component {
 
   componentWillMount() {
     this.firebaseRef = firebase.database().ref().child('submissions');
+    this.submissionRef = this.firebaseRef.child(this.state.user_id);
   }
 
   handleUnfocus(event) {
@@ -29,11 +30,7 @@ class SurveyForm extends Component {
   }
 
   updateFirebase() {
-    if (this.submissionRef) {
-      this.submissionRef.set(this.state);
-    } else {
-      this.submissionRef = this.firebaseRef.push(this.state);
-    }
+    this.submissionRef.update(this.state);
   }
 
   currentStep() {
