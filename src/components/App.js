@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   handleAuthChange(user) {
-    console.log("Auth change: ", user);
     this.setState({ currentUser: user })
   }
 
@@ -28,7 +27,6 @@ class App extends Component {
     event.preventDefault();
     this.auth.signOut();
   }
-
 
   render() {
     var content;
@@ -50,22 +48,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-// userLoggedIn() {
-//   // this.auth.signInWithEmailAndPassword(email, pass);
-//   // // returns a promise with user
-//   //
-//   // this.auth.createUserWithEmailAndPassword(email, pass);
-//   // // creates and logs in user, return a promise.
-//   // // Promises only resolve one time
-//   //
-//
-// }
