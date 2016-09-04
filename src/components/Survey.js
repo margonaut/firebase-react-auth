@@ -14,7 +14,7 @@ class Survey extends Component {
     return (
       <div>
         <SurveyTitle step={step} />
-        <SurveyForm step={step} />
+        <SurveyForm step={step} user={this.props.user} />
       </div>
     )
   }

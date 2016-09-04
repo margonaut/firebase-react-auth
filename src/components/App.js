@@ -32,7 +32,7 @@ class App extends Component {
     var content;
 
     if (this.state.currentUser) {
-      content = <Dashboard handleLogout={this.handleLogout} />
+      content = <Dashboard handleLogout={this.handleLogout} user={this.state.currentUser} />
     } else if (this.state.currentUser == null) {
       content = <SignUpForm auth={this.auth} />
     } else {

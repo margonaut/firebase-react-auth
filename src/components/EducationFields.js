@@ -4,9 +4,9 @@ const EducationFields = (props) => {
 
   return (
     <div>
-      <input type="text" id="grade" placeholder="Your Grade" />
-      <input type="text" id="favorite_subject" placeholder="Favorite Subject" />
-      <input type="text" id="favorite_color" placeholder="Favorite Color" />
+      <input onBlur={props.handleUnfocus} type="text" id="grade" placeholder="Your Grade" />
+      <input onBlur={props.handleUnfocus} type="text" id="favorite_subject" placeholder="Favorite Subject" />
+      <input onBlur={props.handleUnfocus} type="text" id="favorite_color" placeholder="Favorite Color" />
       <div>
       <button >Next</button>
       </div>

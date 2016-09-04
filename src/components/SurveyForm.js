@@ -2,11 +2,30 @@ import React, { Component } from 'react';
 import EducationFields from './EducationFields'
 
 class SurveyForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user_id: this.props.user.uid
+    }
+
+    this.handleUnfocus = this.handleUnfocus.bind(this);
+  }
+
+  handleUnfocus(event) {
+    event.preventDefault();
+    let updatedData = {};
+    let inputValue = event.target.value;
+    let inputId = event.target.id;
+    updatedData[inputId] = inputValue;
+    this.setState(updatedData, function() {
+      console.log(this.state);
+    });
+  }
 
   currentStep() {
     switch (this.props.step) {
       case 1:
-        return <EducationFields />
+        return <EducationFields handleUnfocus={this.handleUnfocus} />
       case 2:
         return "Render Component for Step Two Fields"
       case 3:

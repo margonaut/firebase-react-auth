@@ -6,7 +6,7 @@ const Dashboard = (props) => {
     <div>
       <p>You made it to the secret area!</p>
       <button onClick={props.handleLogout}>Log out</button>
-      <Survey />
+      <Survey user={props.user} />
     </div>
   )
 }
