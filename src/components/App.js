@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import SignUpForm from './SignUpForm';
+import Dashboard from './Dashboard';
 
 class App extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class App extends Component {
     this.state = {}
 
     this.handleAuthChange = this.handleAuthChange.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentWillMount() {
@@ -22,14 +24,21 @@ class App extends Component {
     this.setState({ currentUser: user })
   }
 
+  handleLogout(event) {
+    event.preventDefault();
+    this.auth.signOut();
+  }
+
 
   render() {
     var content;
 
     if (this.state.currentUser) {
-      content = <p>Logged in!</p>
-    } else {
+      content = <Dashboard handleLogout={this.handleLogout} />
+    } else if (this.state.currentUser == null) {
       content = <SignUpForm auth={this.auth} />
+    } else {
+      content = <p>Something else</p>
     }
 
     return (
