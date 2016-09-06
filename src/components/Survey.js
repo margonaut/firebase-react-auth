@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
 import SurveyForm from './SurveyForm';
 import SurveyTitle from './SurveyTitle';
+import NextButton from './NextButton';
+import BackButton from './BackButton';
 
 class Survey extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1
+      step: 2
     }
+
+    this.onNextClick = this.onNextClick.bind(this);
+    this.onBackClick = this.onBackClick.bind(this);
   }
+
+  onNextClick(event) {
+    event.preventDefault();
+    console.log("NEXTTTT");
+    this.setState({step: this.state.step + 1});
+  }
+
+  onBackClick(event) {
+    event.preventDefault();
+    console.log("BAACKK");
+    this.setState({step: this.state.step - 1});
+  }
+
   render() {
     let { step } = this.state;
     return (
       <div>
         <SurveyTitle step={step} />
         <SurveyForm step={step} user={this.props.user} />
+        <BackButton onBackClick={this.onBackClick} />
+        <NextButton onNextClick={this.onNextClick} />
       </div>
     )
   }

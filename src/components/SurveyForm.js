@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import EducationFields from './EducationFields'
+import VolunteerFields from './VolunteerFields'
 
 class SurveyForm extends Component {
   constructor(props) {
@@ -59,11 +60,14 @@ class SurveyForm extends Component {
     switch (this.props.step) {
       case 1:
         return <EducationFields
-                  handleUnfocus={this.handleUnfocus}
-                  userData={this.submissionRef}
-                  handleChange={this.handleChange} />
+                handleUnfocus={this.handleUnfocus}
+                userData={this.submissionRef}
+                handleChange={this.handleChange} />
       case 2:
-        return "Render Component for Step Two Fields"
+        return <VolunteerFields
+                handleUnfocus={this.handleUnfocus}
+                userData={this.submissionRef}
+                handleChange={this.handleChange} />
       case 3:
         return "Render Component for Step Three Fields"
       case 4:
