@@ -3,6 +3,7 @@ import SurveyForm from './SurveyForm';
 import SurveyTitle from './SurveyTitle';
 import NextButton from './NextButton';
 import BackButton from './BackButton';
+import SurveyProgression from './SurveyProgression';
 
 class Survey extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class Survey extends Component {
     let { step } = this.state;
     return (
       <div>
+        <SurveyProgression step={step} />
         <SurveyTitle step={step} />
         <SurveyForm step={step} user={this.props.user} />
         <BackButton onBackClick={this.onBackClick} />
