@@ -49,7 +49,6 @@ class SurveyForm extends Component {
     let inputId = event.target.id;
     updatedData[inputId] = inputValue;
     this.setState(updatedData);
-    console.log("changing")
   }
 
   updateFirebase() {
