@@ -8,7 +8,7 @@ class Survey extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 2
+      step: 1
     }
 
     this.onNextClick = this.onNextClick.bind(this);
@@ -17,14 +17,16 @@ class Survey extends Component {
 
   onNextClick(event) {
     event.preventDefault();
-    console.log("NEXTTTT");
-    this.setState({step: this.state.step + 1});
+    if (this.state.step < 4) {
+      this.setState({ step: this.state.step + 1 });
+    }
   }
 
   onBackClick(event) {
     event.preventDefault();
-    console.log("BAACKK");
-    this.setState({step: this.state.step - 1});
+    if (this.state.step > 1) {
+      this.setState({ step: this.state.step - 1 })
+    }
   }
 
   render() {
